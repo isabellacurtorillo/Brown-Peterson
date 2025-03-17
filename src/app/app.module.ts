@@ -7,17 +7,23 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { InstructionsComponent } from './instructions/instructions.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeScreenComponent
+    HomeScreenComponent,
+    InstructionsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    AppRoutingModule
   ],
   providers: [
     provideAnimationsAsync()

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatButton } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-screen',
@@ -7,10 +7,10 @@ import { MatButton } from '@angular/material/button';
   styleUrls: ['./home-screen.component.scss']
 })
 export class HomeScreenComponent {
-
-  constructor() { }
-
-  public onClick() {
-    console.log('Button clicked');
+    
+    // constructor(private router: Router) { }
+ 
+    // onClick(){
+    //   this.router.navigate(['/instructions']);
+    // }
   }
-}
