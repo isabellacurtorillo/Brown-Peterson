@@ -9,10 +9,11 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Brown-Peterson Task';
   
-  constructor(private readonly router: Router) { }
+  constructor(private route: Router) { }
 
-  public onClick() {
-    console.log('Button clicked');
-    this.router.navigate(['/instructions']);
+  navigateToInstructions() {
+    // Add your navigation logic here
+    this.route.navigate(['/instructions']);
+    console.log('Navigating to instructions');
   }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-instructions',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
 })
 export class InstructionsComponent {
 
-  constructor() { }
+  constructor(private router: Router ) { }
+
+  public onClick() {
+    this.router.navigate(['task']);
+    console.log('Navigating to task...'); // Debugging statement
+  }
 }

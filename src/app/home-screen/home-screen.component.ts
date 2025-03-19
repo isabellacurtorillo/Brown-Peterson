@@ -1,16 +1,23 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
   styleUrls: ['./home-screen.component.scss']
 })
-export class HomeScreenComponent {
+export class HomeScreenComponent implements OnInit {
     
-    // constructor(private router: Router) { }
- 
-    // onClick(){
-    //   this.router.navigate(['/instructions']);
-    // }
+  title = 'Brown-Peterson Task';
+  
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute){ }
+
+  ngOnInit() { }
+
+  public onClick() {
+    this.router.navigate(['instructions']);
+    console.log('Navigating to instructions...'); // Debugging statement
   }
+}
