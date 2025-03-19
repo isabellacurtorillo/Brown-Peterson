@@ -1,17 +1,27 @@
 <app-nav></app-nav>
 <div class="container">
     <h1 class="title">Instructions</h1>
+    
     <p class="instructions">
-        A consonant trigram, example XFG, will appear in the middle of the screen for one second. 
+        A consonant trigram, for example XFG, will appear in the middle of the screen for one second. 
         Study this trigram as you will be asked to recall it later. 
         When the trigram disappears, you will see a three-digit number, such as 481, appear. 
-        You should start counting backwards, out loud, by 3. The computer helps you out for the first response, in this case showing 478 one second later. Subsequently, the computer alternates green and blue circles. Each time you see one of these circles, subtract 3. In the example above, you count down to 469 by the time the second green circle is shown.
+        You should start counting backwards, out loud, by 3. The computer helps you out for the first response, in this case showing 478 one second later. 
+    </p>
+    <p class="instructions"> 
+        Subsequently, the computer alternates green and blue circles. Each time you see one of these circles, subtract 3. 
+        In the example above, you count down to 469 by the time the second green circle is shown.
         At test, you are asked one of two questions: If you are asked to recall the trigram, respond with "XJF". 
         If you are asked to enter the final number, respond with "469". You will be told if you are correct or not.
-        It is important to try to do both tasks. 
+        It is important to try to do both tasks.
+    </p> 
+    <p class="instructions">
         You will be asked to report the trigram on half the trials, and will be asked to report the final number on other trials.
-        There is no way to correct mistakes, so be careful!
-        </p>
+    </p>
+    <p class="message">
+        There is no way to correct mistakes, so be careful!    
+    </p>
+    
     <button mat-fab extended class="next" (click)="onClick()">
-        <mat-icon>arrow_forward</mat-icon>Next
+        <mat-icon>arrow_forward</mat-icon>Start Task
     </button>
