@@ -11,7 +11,7 @@ export class InstructionsComponent {
   constructor(private router: Router ) { }
 
   public onClick() {
-    this.router.navigate(['task']);
-    console.log('Navigating to task...'); // Debugging statement
+    this.router.navigate(['controls']);
+    console.log('Navigating to controls...'); // Debugging statement
   }
 }

@@ -10,6 +10,7 @@ import { InstructionsComponent } from './instructions/instructions.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './nav/nav.component';
 import { TaskComponent } from './task/task.component';
+import { ControlPanelComponent } from './control-panel/control-panel.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TaskComponent } from './task/task.component';
     InstructionsComponent,
     NavComponent,
     TaskComponent,
+    ControlPanelComponent,
   ],
   imports: [
     BrowserModule,
