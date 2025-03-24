@@ -10,7 +10,7 @@ export class ControlPanelComponent {
   constructor(private router: Router ) { }
 
   public onClick() {
-    this.router.navigate(['task']);
+    this.router.navigate(['instructions']);
     console.log('Navigating to task...'); // Debugging statement
   }
 }

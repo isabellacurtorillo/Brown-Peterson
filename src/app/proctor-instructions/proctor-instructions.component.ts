@@ -12,7 +12,7 @@ export class ProctorInstructionsComponent {
 
   public onClick() {
     // Add your navigation logic here
-    this.router.navigate(['instructions']);
+    this.router.navigate(['controls']);
     console.log('Navigating to proctor instructions...'); // Debugging statement
   }
 }
