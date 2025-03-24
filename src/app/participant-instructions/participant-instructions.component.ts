@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-instructions',
-  templateUrl: './instructions.component.html',
-  styleUrl: './instructions.component.scss'
+  templateUrl: './participant-instructions.component.html',
+  styleUrl: './participant-instructions.component.scss'
 })
 export class InstructionsComponent {
 

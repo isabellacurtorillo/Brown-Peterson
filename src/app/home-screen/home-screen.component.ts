@@ -17,7 +17,7 @@ export class HomeScreenComponent implements OnInit {
   ngOnInit() { }
 
   public onClick() {
-    this.router.navigate(['instructions']);
+    this.router.navigate(['proctor-instructions']);
     console.log('Navigating to instructions...'); // Debugging statement
   }
 }
