@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProctorInstructionsComponent } from '../proctor-instructions/proctor-instructions.component';
 
 @Component({
   selector: 'app-home-screen',
@@ -8,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomeScreenComponent implements OnInit {
     
-  title = 'Brown-Peterson Task';
+  public title = 'Brown-Peterson Task';
   
   constructor(
     private router: Router,
@@ -18,6 +19,6 @@ export class HomeScreenComponent implements OnInit {
 
   public onClick() {
     this.router.navigate(['proctor-instructions']);
-    console.log('Navigating to instructions...'); // Debugging statement
+    console.log('Navigating to instructions proctor instructions '); // Debugging statement
   }
 }

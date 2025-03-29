@@ -3,10 +3,16 @@
     <h1 class="title">Proctor Instructions</h1>
     
     <p class="instructions">
-        Before continuing to the task, a control panel will appear on the screen. This panel will allow you to control
-        the parameters of the task, including number of trials and length of delay. Once these metrics are set, the "Start Task" button
-        will appear. Click this button to begin the task.
+        Before continuing to the test, a control panel will appear on the screen. This panel will allow you to control
+        the parameters of the test. The control panel will ask you for:
     </p>
+    <ul class="instructions">
+        <li>Total Number of trials</li>
+        <li>Distractor task quantity 1</li>
+        <li>Distractor task quantity 2</li>
+        <li>Distractor task quantity 3</li>
+    </ul>
+    <p class="instructions">Once these metrics are set, the "Start Task" button will appear. Click this button to begin the task.</p>
     <button mat-fab extended class="next" (click)="onClick()">
         <mat-icon>arrow_forward</mat-icon>Go To Controls
     </button>
