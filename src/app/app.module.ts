@@ -12,6 +12,8 @@ import { NavComponent } from './nav/nav.component';
 import { TaskComponent } from './task/task.component';
 import { ControlPanelComponent } from './control-panel/control-panel.component';
 import { ProctorInstructionsComponent } from './proctor-instructions/proctor-instructions.component';
+import { FormsModule } from '@angular/forms'
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,10 +30,12 @@ import { ProctorInstructionsComponent } from './proctor-instructions/proctor-ins
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })

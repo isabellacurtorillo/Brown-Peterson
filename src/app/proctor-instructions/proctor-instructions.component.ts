@@ -7,12 +7,10 @@ import { Router } from '@angular/router';
   styleUrl: './proctor-instructions.component.scss'
 })
 export class ProctorInstructionsComponent {
-
-  constructor(private router: Router){ }
+  constructor(private router: Router){}
 
   public onClick() {
-    // Add your navigation logic here
     this.router.navigate(['controls']);
-    console.log('Navigating to proctor instructions...'); // Debugging statement
+    console.log('Navigating to control panel..'); // Debugging statement
   }
 }

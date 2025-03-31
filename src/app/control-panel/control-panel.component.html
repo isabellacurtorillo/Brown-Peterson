@@ -1,5 +1,24 @@
 <app-nav></app-nav>
-<p>Control Panel</p>
-<button mat-fab extended class="next" (click)="onClick()">
-    <mat-icon>arrow_forward</mat-icon>Participant Instructions
-</button>
+<div class="container title">
+    <h1 class="title">Control Panel</h1>
+    Total Number of Trials: 
+    <input required [(ngModel)]="sTrialsAmount" (ngModelChange)="checkQuantityEmpty(sTrialsAmount, 1)"><br>
+    
+    Distractor Task Quantity 1:
+    <input required [(ngModel)]="sDtq1" (ngModelChange)="checkQuantityEmpty(sDtq1, 2)"><br>
+    
+    Distractor Task Quantity 2:
+    <input required [(ngModel)]="sDtq2" (ngModelChange)="checkQuantityEmpty(sDtq2, 3)"><br>
+    
+    Distractor Task Quantity 3:
+    <input required [(ngModel)]="sDtq3" (ngModelChange)="checkQuantityEmpty(sDtq3, 4)"><br><br>
+
+    <button (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
+</div>
+
+
+
+<div *ngIf="errorMessage" class="error-message">
+</div>
+
+

@@ -1,15 +1,20 @@
-.title{
-    text-align: center;
-    margin-top: 5%;
+//Class Selector Styles
+.instructions{
+    margin-left: 5rem;
+    margin-right: 5rem;
+    text-align: justify;
+    font-size: large;
+    line-height: 1.5;
 }
 
 .next{
-    margin-top: 5rem;
+    margin-top: 3rem;
     margin-left: 45%;
-    margin-right: 3rem;
+    margin-right: 5rem;
+    text-align: center;
 }
 
-.subtitle{
+.title{
     text-align: center;
-    margin-top: 5%;
- }
+    margin-top: 3%;
+}
