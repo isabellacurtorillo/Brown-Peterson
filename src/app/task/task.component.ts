@@ -18,4 +18,9 @@ export class TaskComponent {
     }
     return this.trigram;
   }
+
+  public getTrigram() {
+    return this.trigram;
+  }
+  
 }
