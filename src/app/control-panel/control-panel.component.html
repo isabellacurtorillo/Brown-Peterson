@@ -13,7 +13,7 @@
     Distractor Task Quantity 3:
     <input required [(ngModel)]="sDtq3" (ngModelChange)="checkQuantityEmpty(sDtq3, 4)"><br><br>
 
-    <button (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
+    <button mat-fab extended class="submit" (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
 </div>
 
 
