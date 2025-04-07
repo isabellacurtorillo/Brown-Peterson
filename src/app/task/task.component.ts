@@ -13,7 +13,7 @@ export class TaskComponent {
   public trigram: string = "";
   public formInput: number;
 
-  public generateRandomTrigram(trigram: string[]) {
+  public generateRandomTrigram() {
     this.trigram = "";
     for (let i = 0; i < 3; i++) {
       const randomIndex = Math.floor(Math.random() * this.trigramLetters.length);

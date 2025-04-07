@@ -8,10 +8,35 @@ import { Router } from '@angular/router';
 })
 export class InstructionsComponent {
 
-  constructor(private router: Router ) { }
+  public invalidCode: boolean;
+  public sPCode: string;
+  public participantId: number;
 
-  public onClick() {
-    this.router.navigate(['task']);
-    console.log('Navigating to controls...'); // Debugging statement
+  constructor(private router: Router ) { 
+    this.invalidCode = true;
+    this.participantId = 0;
+    this.router.navigate(['instructions']);
   }
+
+  public checkQuantityEmpty(q: string) {
+        if(q.length == 0 || this.containsOnlyNumbers(q) == false) {
+          this.invalidCode = true;
+        }else {
+          this.participantId = parseInt(q);
+          this.invalidCode = false;
+        }
+    }
+  
+    public containsOnlyNumbers(q: string):boolean { return /^\d+$/.test(q); }
+  
+    public isDisabled():boolean {
+      if(this.invalidCode == false) {
+        return false;
+      }
+      return true;
+    }
+    
+    public onSubmit() {
+      console
+    }
 }

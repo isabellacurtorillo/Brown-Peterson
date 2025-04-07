@@ -1,5 +1,35 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TaskComponent } from '../task/task.component';
+import { InstructionsComponent } from '../participant-instructions/participant-instructions.component';
+
+class trials {
+  public allTrials: trial[] = [];
+  public triTask: TaskComponent;
+  public iTrial: trial;
+
+  constructor(tnt: number) {
+    this.triTask = new TaskComponent;
+      for(let i = 0; i < tnt; i++) {
+        this.iTrial = new trial(i+1);
+        this.allTrials.push(this.iTrial);
+        this.allTrials[i].randTrigram = this.triTask.generateRandomTrigram();
+        console.log(this.allTrials[i].randTrigram + " " + this.allTrials[i].trialNum);
+      }
+  }
+}
+
+class trial {
+  public trialNum: number;
+  public randTrigram: string;
+  public pi: InstructionsComponent;
+
+  constructor(tn: number) {
+    this.trialNum = tn;
+    this.randTrigram = "";
+    this.pi = null;
+  }
+}
 
 @Component({
   selector: 'app-control-panel',
@@ -46,10 +76,10 @@ export class ControlPanelComponent {
               if(this.nQuant <= 2) {
                 this.invalidTrialsAmount = true;
                 console.log(this.errorMessage);
-                return;
+              }else {
+                this.nTrialsAmount = this.nQuant;
+                this.invalidTrialsAmount = false;
               }
-              this.nTrialsAmount = this.nQuant;
-              this.invalidTrialsAmount = false;
             }
               break;
           case 2: 
@@ -61,10 +91,10 @@ export class ControlPanelComponent {
               if(this.nQuant <= 2 || this.nQuant == this.nDtq2 || this.nQuant == this.nDtq3) {
                 this.invalidDtq1 = true;
                 console.log(this.errorMessage);
-                return;
+              }else {
+                this.nDtq1 = this.nQuant;
+                this.invalidDtq1 = false;
               }
-              this.nDtq1 = this.nQuant;
-              this.invalidDtq1 = false;
             }
               break;
           case 3:
@@ -76,10 +106,10 @@ export class ControlPanelComponent {
               if(this.nQuant <= 2 || this.nDtq1 == this.nQuant || this.nQuant == this.nDtq3 ) {
                 this.invalidDtq2 = true;
                 console.log(this.errorMessage);
-                return;
+              }else {
+                this.nDtq2 = this.nQuant;
+                this.invalidDtq2 = false;
               }
-              this.nDtq2 = this.nQuant;
-              this.invalidDtq2 = false;
             }
               break;
           case 4:
@@ -91,10 +121,10 @@ export class ControlPanelComponent {
               if(this.nQuant <= 2 || this.nQuant == this.nDtq2 || this.nQuant == this.nDtq1) {
                 this.invalidDtq3 = true;
                 console.log(this.errorMessage);
-                return;
+              }else {
+                this.nDtq3 = this.nQuant;
+                this.invalidDtq3 = false;
               }
-              this.nDtq3 = this.nQuant;
-              this.invalidDtq3 = false;
             }
               break;
         }
@@ -111,9 +141,9 @@ export class ControlPanelComponent {
   
   public onSubmit() {
     console.log(this.nTrialsAmount + " " + this.nDtq1 + " " + this.nDtq2 + " " + this.nDtq3);
+    const tt = new trials(this.nTrialsAmount);
+    tt.allTrials[0].pi = new InstructionsComponent(this.router);
   }
-
-  
 
 }
 

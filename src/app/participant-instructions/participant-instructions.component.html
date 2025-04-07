@@ -19,7 +19,11 @@
         <p class="message">
         There is no way to correct mistakes, so be careful!    
     </p>
+    <p class="instructions">
+        Participant Code: {{ sPCode }}
+        <input required [(ngModel)]="sPCode" (ngModelChange)="checkQuantityEmpty(sPCode)"><br><br>
+
+        <button (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
+    </p>
     
-    <button mat-fab extended class="next" (click)="onClick()">
-        <mat-icon>arrow_forward</mat-icon>Start Task
-    </button>
+    
