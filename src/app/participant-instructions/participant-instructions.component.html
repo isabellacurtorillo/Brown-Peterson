@@ -23,7 +23,7 @@
         Participant Code: {{ sPCode }}
         <input required [(ngModel)]="sPCode" (ngModelChange)="checkQuantityEmpty(sPCode)"><br><br>
 
-        <button (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
+        <button mat-fab extended class="submit" (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
     </p>
     
     

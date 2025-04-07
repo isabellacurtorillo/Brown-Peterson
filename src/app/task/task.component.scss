@@ -1,0 +1,32 @@
+.trigram-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(89, 60, 97);
+    background: white;
+    border-radius: 5px;
+    padding: 5px;
+    -moz-animation: inAndOut 2s ease-in forwards;
+    -webkit-animation: inAndOut 2s ease-in forwards;
+    animation: inAndOut 3s ease-in forwards;
+  }
+  
+  @keyframes inAndOut {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
