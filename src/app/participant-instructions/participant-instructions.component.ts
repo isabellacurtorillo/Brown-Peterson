@@ -37,6 +37,8 @@ export class InstructionsComponent {
     }
     
     public onSubmit() {
-      console
+      let code = this.sPCode;
+      console.log(code);
+      this.router.navigate(['task']);
     }
 }

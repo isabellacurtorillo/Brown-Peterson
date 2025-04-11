@@ -1,5 +1,25 @@
 <app-nav></app-nav>
-<div class="container title">
+<div class="col-xs-12">
+    <form [formGroup]="controlForm">
+        <div class="col-xs-12">
+            <h1 class="title">Control Panel</h1>
+            <label>Total Number of Trials:</label>
+            <input formControlName="trials"><br>
+
+            <label>Distractor Task Quantity 1:</label>
+            <input formControlName="distractor"><br>
+
+            <label>Distractor Task Quantity 2:</label>
+            <input formControlName="distractortwo"><br>
+
+            <label>Distractor Task Quantity 3:</label>
+            <input formControlName="distractorthree"><br><br>
+            <button mat-fab extended class="submit" (click)="onSubmit()">Submit</button>
+        </div>
+    </form>
+</div>
+
+<!-- <div class="container title">
     <h1 class="title">Control Panel</h1>
     Total Number of Trials: 
     <input required [(ngModel)]="sTrialsAmount" (ngModelChange)="checkQuantityEmpty(sTrialsAmount, 1)"><br>
@@ -18,7 +38,5 @@
 
 
 
-<div *ngIf="errorMessage" class="error-message">
-</div>
-
+<div *ngIf="errorMessage" class="error-message"> -->
 

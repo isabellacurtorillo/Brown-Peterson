@@ -12,7 +12,7 @@ import { NavComponent } from './nav/nav.component';
 import { TaskComponent } from './task/task.component';
 import { ControlPanelComponent } from './control-panel/control-panel.component';
 import { ProctorInstructionsComponent } from './proctor-instructions/proctor-instructions.component';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
@@ -32,6 +32,7 @@ import { provideHttpClient } from '@angular/common/http';
     MatIconModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideAnimationsAsync(),
