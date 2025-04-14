@@ -45,7 +45,7 @@ export class ControlPanelComponent {
   public controlpanel: ControlPanel;
 
   public controlForm: FormGroup = new FormGroup({
-    trials: new FormControl(undefined, Validators.required),
+    trials: new FormControl(undefined, [Validators.required, Validators.min(5)]),
     distractor: new FormControl(undefined, Validators.required),
     distractortwo: new FormControl(undefined, Validators.required),
     distractorthree: new FormControl(undefined, Validators.required)
