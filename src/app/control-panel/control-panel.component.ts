@@ -45,10 +45,10 @@ export class ControlPanelComponent {
   public controlpanel: ControlPanel;
 
   public controlForm: FormGroup = new FormGroup({
-    trials: new FormControl(undefined, [Validators.required, Validators.min(5)]),
-    distractor: new FormControl(undefined, Validators.required),
-    distractortwo: new FormControl(undefined, Validators.required),
-    distractorthree: new FormControl(undefined, Validators.required)
+    trials: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(3)]),
+    distractor: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(2)]),
+    distractortwo: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(2)]),
+    distractorthree: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(2)])
   });
 
   constructor(private router: Router){ }
@@ -72,6 +72,15 @@ export class ControlPanelComponent {
     for(let i = 0; i < this.controlForm.value.trials; i++){
       console.log("Trial " + i);
     }
+  }
+
+  isDisabled():boolean {
+    if(this.controlForm.valid) {
+      if((this.controlForm.value.distractor !== this.controlForm.value.distractortwo) && (this.controlForm.value.distractor !== this.controlForm.value.distractorthree) && (this.controlForm.value.distractortwo !== this.controlForm.value.distractorthree)) {
+        return false;
+      }
+    }
+    return true;
   }
 }
 //   constructor(private router: Router ) {
@@ -156,14 +165,7 @@ export class ControlPanelComponent {
 //         }
 //   }
 
-//   public containsOnlyNumbers(q: string):boolean { return /^\d+$/.test(q); }
-
-//   public isDisabled():boolean {
-//     if(this.invalidTrialsAmount == false && this.invalidDtq1 == false && this.invalidDtq2 == false && this.invalidDtq3 == false) {
-//       return false;
-//     }
-//     return true;
-//   }
+//   public containsOnlyNumbers(q: string):boolean { return /^\d+$/.test(q); 
   
 //   public onSubmit() {
 //     console.log(this.nTrialsAmount + " " + this.nDtq1 + " " + this.nDtq2 + " " + this.nDtq3);

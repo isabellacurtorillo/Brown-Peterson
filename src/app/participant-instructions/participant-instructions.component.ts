@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-instructions',
@@ -8,37 +9,37 @@ import { Router } from '@angular/router';
 })
 export class InstructionsComponent {
 
-  public invalidCode: boolean;
-  public sPCode: string;
+  public pInstrForm: FormGroup = new FormGroup({
+    participantCode: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/)])
+  });
+
+  // public invalidCode: boolean;
+  // public sPCode: string;
   public participantId: number;
 
-  constructor(private router: Router ) { 
-    this.invalidCode = true;
-    this.participantId = 0;
-    this.router.navigate(['instructions']);
-  }
+  constructor(private router: Router ) {}
 
-  public checkQuantityEmpty(q: string) {
-        if(q.length == 0 || this.containsOnlyNumbers(q) == false) {
-          this.invalidCode = true;
-        }else {
-          this.participantId = parseInt(q);
-          this.invalidCode = false;
-        }
-    }
+  // public checkQuantityEmpty(q: string) {
+  //       if(q.length == 0 || this.containsOnlyNumbers(q) == false) {
+  //         this.invalidCode = true;
+  //       }else {
+  //         this.participantId = parseInt(q);
+  //         this.invalidCode = false;
+  //       }
+  //   }
   
-    public containsOnlyNumbers(q: string):boolean { return /^\d+$/.test(q); }
+  //   public containsOnlyNumbers(q: string):boolean { return /^\d+$/.test(q); }
   
     public isDisabled():boolean {
-      if(this.invalidCode == false) {
-        return false;
+      if(this.pInstrForm.valid && this.pInstrForm.value.participantCode.length == 4) {
+          return false;
       }
-      return true;
+      return true
     }
     
     public onSubmit() {
-      let code = this.sPCode;
-      console.log(code);
+      console.log(this.pInstrForm);
+      this.participantId = this.pInstrForm.value.participantCode;
       this.router.navigate(['task']);
     }
 }

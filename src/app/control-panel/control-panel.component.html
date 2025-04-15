@@ -14,7 +14,7 @@
 
             <label>Distractor Task Quantity 3:</label>
             <input formControlName="distractorthree"><br><br>
-            <button mat-fab extended class="submit" (click)="onSubmit()">Submit</button>
+            <button mat-fab extended class="submit" (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
         </div>
     </form>
 </div>
