@@ -13,10 +13,26 @@
             <input formControlName="distractortwo"><br>
 
             <label>Distractor Task Quantity 3:</label>
-            <input formControlName="distractorthree"><br><br>
-            <button mat-fab extended class="submit" (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
+            <input formControlName="distractorthree"><br>
+            
+            <label>Number of Participants: </label>
+            <input formControlName="numPart">
+            <br>
         </div>
     </form>
+
+    <!-- <label>Add Participants</label>
+    <button style="margin-left: 1.5em" (click)="addParticipants()" [disabled]="isDisabled()"><mat-icon>+</mat-icon></button>
+    <form [formGroup]="dynamicForm">
+        <div  class="col-xs-12">
+            <div formArrayName="bulkRuns">
+                <div *ngFor="let bulkRun of bulkRuns.controls; let i = index" [formGroupName]="i">
+                    <input formControlName="code" placeholder="Participant ID"><button style="margin-left: 1.5em" (click)="removeBulkRun()"><mat-icon>-</mat-icon></button>
+                </div>
+            </div>
+        </div>
+    </form><br><br> -->
+    <button (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
 </div>
 
 <!-- <div class="container title">

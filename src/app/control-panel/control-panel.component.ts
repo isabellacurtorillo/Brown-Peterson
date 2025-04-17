@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { TaskComponent } from '../task/task.component';
 import { InstructionsComponent } from '../participant-instructions/participant-instructions.component';
 import { ControlPanel } from '../control-panel.model';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 
 // class trials {
 //   public allTrials: trial[] = [];
@@ -43,15 +43,40 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ControlPanelComponent {
 
   public controlpanel: ControlPanel;
+  // public dynamicForm: FormGroup;
+  public task: TaskComponent;
 
   public controlForm: FormGroup = new FormGroup({
     trials: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(3)]),
     distractor: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(2)]),
     distractortwo: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(2)]),
-    distractorthree: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(2)])
+    distractorthree: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(2)]),
+    numPart: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(1)])
   });
 
-  constructor(private router: Router){ }
+  constructor(private router: Router, private fb: FormBuilder) {
+    // this.dynamicForm = this.fb.group({
+    //   bulkRuns: this.fb.array([])
+    // });
+  }
+
+
+
+  // public get bulkRuns(): FormArray {
+  //   return this.dynamicForm.get('bulkRuns') as FormArray;
+  // }
+
+
+  // public addParticipants() {
+  //   this.bulkRuns.push(this.fb.group({
+  //     code: []
+  //   }));
+  //   console.log(this.dynamicForm);
+  // }
+
+  // public removeBulkRun(index: number) {
+  //   this.bulkRuns.removeAt(index);
+  // }
 
   ngpInit() {
 
@@ -59,12 +84,9 @@ export class ControlPanelComponent {
 
   onSubmit() {
     console.log(this.controlForm);
+    // console.log(this.dynamicForm);
     if(this.controlForm.valid){
-      const numberOfTrials = this.controlForm.value.trials;
-      const distractorOne = this.controlForm.value.distractor;
-      const distractorTwo = this.controlForm.value.distractortwo;
-      const distractorThree = this.controlForm.value.distractorthree;
-      this.router.navigate(['instructions']);
+        this.router.navigate(['instructions']);
     }
   }
 

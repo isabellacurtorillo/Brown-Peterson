@@ -1,2 +1,35 @@
 <app-nav></app-nav>
-<h2 class="trigram-display">{{trigram}}</h2>
+<h2 *ngIf="showTrigram" class="trigram-display">{{trigram}}</h2>
+<div class="num-button">
+    <button *ngIf="showDist" (click)="swapQuantities(num1)">{{ num1 }}</button>
+    <button *ngIf="showDist" (click)="swapQuantities(num2)">{{ num2 }}</button>
+</div>
+<div class="keyboard">
+    <div class="num-button">
+        <button *ngIf="showKeys" (click)="recordResp('B', 0)" [disabled]="disableLetters[0]">B</button>
+        <button *ngIf="showKeys" (click)="recordResp('C', 1)" [disabled]="disableLetters[1]">C</button>
+        <button *ngIf="showKeys" (click)="recordResp('D', 2)" [disabled]="disableLetters[2]">D</button>
+        <button *ngIf="showKeys" (click)="recordResp('F', 3)" [disabled]="disableLetters[3]">F</button>
+        <button *ngIf="showKeys" (click)="recordResp('G', 4)" [disabled]="disableLetters[4]">G</button>
+        <button *ngIf="showKeys" (click)="recordResp('H', 5)" [disabled]="disableLetters[5]">H</button>
+        <button *ngIf="showKeys" (click)="recordResp('J', 6)" [disabled]="disableLetters[6]">J</button>
+    </div>
+    <div class="num-button">
+        <button *ngIf="showKeys" (click)="recordResp('K', 7)" [disabled]="disableLetters[7]">K</button>
+        <button *ngIf="showKeys" (click)="recordResp('L', 8)" [disabled]="disableLetters[8]">L</button>
+        <button *ngIf="showKeys" (click)="recordResp('M', 9)" [disabled]="disableLetters[9]">M</button>
+        <button *ngIf="showKeys" (click)="recordResp('N', 10)" [disabled]="disableLetters[10]">N</button>
+        <button *ngIf="showKeys" (click)="recordResp('P', 11)" [disabled]="disableLetters[11]">P</button>
+        <button *ngIf="showKeys" (click)="recordResp('Q', 12)" [disabled]="disableLetters[12]">Q</button>
+    </div>
+    <div class="num-button">
+        <button *ngIf="showKeys" (click)="recordResp('R', 13)" [disabled]="disableLetters[13]">R</button>
+        <button *ngIf="showKeys" (click)="recordResp('S',14)" [disabled]="disableLetters[14]">S</button>
+        <button *ngIf="showKeys" (click)="recordResp('T', 15)" [disabled]="disableLetters[15]">T</button>
+        <button *ngIf="showKeys" (click)="recordResp('V', 16)" [disabled]="disableLetters[16]">V</button>
+        <button *ngIf="showKeys" (click)="recordResp('W', 17)" [disabled]="disableLetters[17]">W</button>
+        <button *ngIf="showKeys" (click)="recordResp('X', 18)" [disabled]="disableLetters[18]">X</button>
+        <button *ngIf="showKeys" (click)="recordResp('Z', 19)" [disabled]="disableLetters[19]">Z</button>
+    </div>
+</div>
+
