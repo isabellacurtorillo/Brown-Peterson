@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -9,21 +9,21 @@ import { Router } from '@angular/router';
 })
 export class TaskComponent implements OnInit {
 
-  constructor(private router: Router) {
-    this.trigram = this.generateRandomTrigram();
-  }
+  constructor(private router: Router) {}
 
   public trigramLetters: string[] = ["B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Z"];
   public disableLetters: boolean[];
   public trigram: string = "";
   public num1: number;
   public num2: number;
-  public formInput: number = 5;
+  @Input() public formInput: number;
   public showTrigram: boolean;
   public showDist: boolean;
   public showKeys: boolean;
+  public respCount: number;
 
   ngOnInit() {
+    this.trigram = this.generateRandomTrigram();
     this.showTrigram = false;
     this.showDist = false;
     this.showKeys = false;
@@ -39,10 +39,11 @@ export class TaskComponent implements OnInit {
     setTimeout(() => {
       this.showDist = true;
     }, 7000);
+    console.log(this.formInput);
   }
 
   public swapQuantities(n: number) {
-    if( n % 2 == 0 && this.formInput != 0) {
+    if( n % 2 == 0 && this.formInput-1 != 0) {
       const randomNumber = Math.random();
       if (randomNumber < 0.5) {
         this.num1 = this.generateRandomOddNumber();
@@ -55,7 +56,7 @@ export class TaskComponent implements OnInit {
     }else {
       if(n % 2 != 0) {
         return;
-      }else if(n % 2 == 0 && this.formInput == 0) {
+      }else if(n % 2 == 0 && this.formInput-1 == 0) {
         this.showDist = false;
         this.showKeys = true;
       }
@@ -66,7 +67,15 @@ export class TaskComponent implements OnInit {
   public recordResp(ans: string, pos: number) {
     console.log(ans);
     this.disableLetters[pos] = true;
-    console.log(this.disableLetters[pos]);
+    this.respCount = 0;
+    for(const element of this.disableLetters) {
+      if (element) {
+        this.respCount++;
+      }
+    }
+    if(this.respCount == 3) {
+      this.router.navigate(['instructions']);
+    }
   }
 
   public generateRandomTrigram() {

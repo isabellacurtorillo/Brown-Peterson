@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ControlPanel } from '../control-panel.model';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
@@ -10,11 +10,19 @@ import { TaskComponent } from '../task/task.component';
   styleUrl: './control-panel.component.scss'
 })
 
-export class ControlPanelComponent {
+export class ControlPanelComponent implements OnInit {
 
   public controlpanel: ControlPanel;
   // public dynamicForm: FormGroup;
   public task: TaskComponent;
+  public showTask: boolean;
+  public showInstructions: boolean;
+  public showPartI: boolean;
+  public distOneCount: number;
+  public distTwoCount: number;
+  public distThreeCount: number;
+  public randDistNum: number;
+  public randDistOrder: number[] = [];
 
   public controlForm: FormGroup = new FormGroup({
     trials: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(3)]),
@@ -28,6 +36,12 @@ export class ControlPanelComponent {
     // this.dynamicForm = this.fb.group({
     //   bulkRuns: this.fb.array([])
     // });
+  }
+
+  ngOnInit(): void {
+    this.showTask = false;
+    this.showInstructions = true;
+    this.showPartI = false;
   }
 
 
@@ -48,15 +62,70 @@ export class ControlPanelComponent {
   //   this.bulkRuns.removeAt(index);
   // }
 
-  ngpInit() {
-
-  }
-
   onSubmit() {
     console.log(this.controlForm);
     // console.log(this.dynamicForm);
     if(this.controlForm.valid){
-        this.router.navigate(['instructions']);
+        this.showInstructions = false;
+        // this.showPartI = true;
+        this.setCounters();
+        this.randDistOrder = this.getRandDistOrder();
+        console.log(this.randDistOrder.toString());
+        this.randDistNum = this.randDistOrder[0];
+        this.showTask = true;
+
+    }
+  }
+
+  getRandDistOrder(): number[] {
+    const choices: number[] = [this.controlForm.value.distractor, this.controlForm.value.distractortwo, this.controlForm.value.distractorthree];
+    var order: number[] = new Array(this.controlForm.value.trials).fill(null);
+    for(let i = 0; i < this.controlForm.value.trials; i++) {
+      var randomIndex = Math.floor(Math.random() * choices.length);
+      order[i] = choices[randomIndex];
+      if(order[i] == choices[0] && this.distOneCount != 0) {
+        this.distOneCount--;
+      }else if(order[i] == choices[1] && this.distTwoCount != 0) {
+        this.distTwoCount--;
+      }else if(order[i] == choices[2] && this.distThreeCount != 0) {
+        this.distThreeCount--;
+      }else if(order[i] == choices[0] && this.distOneCount == 0 && this.distThreeCount != 0) {
+        order[i] = choices[2];
+        this.distThreeCount--;
+      }else if(order[i] == choices[0] && this.distOneCount == 0 && this.distTwoCount != 0) {
+        order[i] = choices[1];
+        this.distTwoCount--;
+      }else if(order[i] == choices[1] && this.distTwoCount == 0 && this.distOneCount != 0) {
+        order[i] = choices[0];
+        this.distOneCount--;
+      }else if(order[i] == choices[1] && this.distTwoCount == 0 && this.distThreeCount != 0) {
+        order[i] = choices[2];
+        this.distThreeCount--;
+      }else if(order[i] == choices[2] && this.distThreeCount == 0 && this.distOneCount != 0) {
+        order[i] = choices[0];
+        this.distOneCount--;
+      }else if(order[i] == choices[2] && this.distThreeCount == 0 && this.distTwoCount != 0) {
+        order[i] = choices[1];
+        this.distTwoCount--;
+      }
+    }
+    return order;
+  }
+
+  setCounters() {
+    const total = this.controlForm.value.trials;
+    if(total % 3 == 0) {
+      this.distOneCount = Math.floor(total / 3);
+      this.distTwoCount = Math.floor(total / 3);
+      this.distThreeCount = Math.floor(total / 3);
+    }else if(total % 3 == 1) {
+      this.distOneCount = Math.floor(total / 3);
+      this.distTwoCount = Math.floor(total / 3);
+      this.distThreeCount = this.distOneCount + 1;
+    }else if(total % 3 == 2) {
+      this.distOneCount = Math.floor(total / 3);
+      this.distTwoCount = this.distOneCount + 1;
+      this.distThreeCount = this.distOneCount + 1;
     }
   }
 
@@ -66,5 +135,16 @@ export class ControlPanelComponent {
     }
   }
 
+<<<<<<< Updated upstream
 
+=======
+  isDisabled():boolean {
+    if(this.controlForm.valid) {
+      if((this.controlForm.value.numPart >= 1) && (this.controlForm.value.distractor !== this.controlForm.value.distractortwo) && (this.controlForm.value.distractor !== this.controlForm.value.distractorthree) && (this.controlForm.value.distractortwo !== this.controlForm.value.distractorthree)) {
+        return false;
+      }
+    }
+    return true;
+  }
+>>>>>>> Stashed changes
 }

@@ -1,4 +1,3 @@
-<app-nav></app-nav>
 <div class="container instructions">
     <form [formGroup]="pInstrForm">
         <h1 class="title">Task Instructions</h1>
@@ -12,10 +11,16 @@
         would click the J button first, the F button second, and the K button last.<br><br>
         Continue through the task until you have completed all trials.
         <p class="message">There is no way to correct mistakes, so be careful!</p>
+<<<<<<< Updated upstream
             <label>Participant Code (4 digits): </label>
             <input formControlName="participantCode"><br><br>
+=======
+            <label for="partCode">Participant Code: </label>
+            <input id="partCode" formControlName="participantCode"><br><br>
+>>>>>>> Stashed changes
             <button mat-fab extended class="submit" (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
     </form>
 </div>
+
     
     

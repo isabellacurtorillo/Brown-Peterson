@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TaskComponent } from '../task/task.component';
 
 @Component({
   selector: 'app-instructions',
@@ -16,6 +17,7 @@ export class InstructionsComponent {
   // public invalidCode: boolean;
   // public sPCode: string;
   public participantId: number;
+  public task: TaskComponent;
 
   constructor(private router: Router ) {}
 

@@ -1,24 +1,65 @@
 <app-nav></app-nav>
-<div class="instructions">
+<div *ngIf="showInstructions" class="instructions">
     <form [formGroup]="controlForm">
         <div class="col-xs-12">
             <h1 class="title">Control Panel</h1>
-            <label>Total Number of Trials:</label>
-            <input formControlName="trials"><br>
+            <label for="trialsQuant">Total Number of Trials:</label>
+            <input id="trialsQuant" formControlName="trials"><br>
 
-            <label>Distractor Task Quantity 1:</label>
-            <input formControlName="distractor"><br>
+            <label for="disTaskOne">Distractor Task Quantity 1:</label>
+            <input id="disTaskOne" formControlName="distractor"><br>
 
-            <label>Distractor Task Quantity 2:</label>
-            <input formControlName="distractortwo"><br>
+            <label for="diskTaskTwo">Distractor Task Quantity 2:</label>
+            <input id="diskTaskTwo" formControlName="distractortwo"><br>
 
-            <label>Distractor Task Quantity 3:</label>
-            <input formControlName="distractorthree"><br>
+            <label for="diskTaskThree">Distractor Task Quantity 3:</label>
+            <input id="diskTaskThree" formControlName="distractorthree"><br>
             
-            <label>Number of Participants: </label>
-            <input formControlName="numPart">
+            <label for="numParticipants">Number of Participants: </label>
+            <input id="numParticipants" formControlName="numPart">
             <br>
         </div>
     </form>
+<<<<<<< Updated upstream
     <button (click)="onSubmit()">Submit</button>
 </div>
+=======
+
+    <!-- <label>Add Participants</label>
+    <button style="margin-left: 1.5em" (click)="addParticipants()" [disabled]="isDisabled()"><mat-icon>+</mat-icon></button>
+    <form [formGroup]="dynamicForm">
+        <div  class="col-xs-12">
+            <div formArrayName="bulkRuns">
+                <div *ngFor="let bulkRun of bulkRuns.controls; let i = index" [formGroupName]="i">
+                    <input formControlName="code" placeholder="Participant ID"><button style="margin-left: 1.5em" (click)="removeBulkRun()"><mat-icon>-</mat-icon></button>
+                </div>
+            </div>
+        </div>
+    </form><br><br> -->
+    <button (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
+</div>
+
+<app-instructions *ngIf="showPartI"></app-instructions>
+<app-task *ngIf="showTask" [formInput]="randDistNum"></app-task>
+<!-- <div class="container title">
+    <h1 class="title">Control Panel</h1>
+    Total Number of Trials: 
+    <input required [(ngModel)]="sTrialsAmount" (ngModelChange)="checkQuantityEmpty(sTrialsAmount, 1)"><br>
+    
+    Distractor Task Quantity 1:
+    <input required [(ngModel)]="sDtq1" (ngModelChange)="checkQuantityEmpty(sDtq1, 2)"><br>
+    
+    Distractor Task Quantity 2:
+    <input required [(ngModel)]="sDtq2" (ngModelChange)="checkQuantityEmpty(sDtq2, 3)"><br>
+    
+    Distractor Task Quantity 3:
+    <input required [(ngModel)]="sDtq3" (ngModelChange)="checkQuantityEmpty(sDtq3, 4)"><br><br>
+
+    <button mat-fab extended class="submit" (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
+</div>
+
+
+
+<div *ngIf="errorMessage" class="error-message"> -->
+
+>>>>>>> Stashed changes
