@@ -1,17 +1,73 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss'
 })
-export class TaskComponent {
+export class TaskComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {
+    this.trigram = this.generateRandomTrigram();
+  }
 
-  public trigramLetters: string[] = ["B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"];
+  public trigramLetters: string[] = ["B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Z"];
+  public disableLetters: boolean[];
   public trigram: string = "";
-  public formInput: number;
+  public num1: number;
+  public num2: number;
+  public formInput: number = 5;
+  public showTrigram: boolean;
+  public showDist: boolean;
+  public showKeys: boolean;
+
+  ngOnInit() {
+    this.showTrigram = false;
+    this.showDist = false;
+    this.showKeys = false;
+    this.disableLetters = [false, false, false, false ,false, false, false, false, false ,false, false, false, false, false ,false, false, false, false, false ,false]
+    this.num1 = this.generateRandomEvenNumber();
+    this.num2 = this.generateRandomOddNumber();
+    setTimeout(() => {
+      this.showTrigram = true;
+    }, 4000);
+    setTimeout(() => {
+      this.showTrigram = false;
+    }, 2000);
+    setTimeout(() => {
+      this.showDist = true;
+    }, 7000);
+  }
+
+  public swapQuantities(n: number) {
+    if( n % 2 == 0 && this.formInput != 0) {
+      const randomNumber = Math.random();
+      if (randomNumber < 0.5) {
+        this.num1 = this.generateRandomOddNumber();
+        this.num2 = this.generateRandomEvenNumber();
+      }else if(randomNumber >= 0.5){
+        this.num1 = this.generateRandomEvenNumber();
+        this.num2 = this.generateRandomOddNumber();
+      }
+      this.formInput--;
+    }else {
+      if(n % 2 != 0) {
+        return;
+      }else if(n % 2 == 0 && this.formInput == 0) {
+        this.showDist = false;
+        this.showKeys = true;
+      }
+      return;
+    }
+  }
+
+  public recordResp(ans: string, pos: number) {
+    console.log(ans);
+    this.disableLetters[pos] = true;
+    console.log(this.disableLetters[pos]);
+  }
 
   public generateRandomTrigram() {
     this.trigram = "";

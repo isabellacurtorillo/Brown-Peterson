@@ -12,17 +12,40 @@ import { FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } fro
 export class ControlPanelComponent {
 
   public controlpanel: ControlPanel;
-  public validForm: boolean;
-  public dynamicForm: FormGroup;
+  // public dynamicForm: FormGroup;
+  public task: TaskComponent;
 
   public controlForm: FormGroup = new FormGroup({
-    trials: new FormControl(undefined, [Validators.required, Validators.min(5)]),
-    distractor: new FormControl(undefined, Validators.required),
-    distractortwo: new FormControl(undefined, Validators.required),
-    distractorthree: new FormControl(undefined, Validators.required)
+    trials: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(3)]),
+    distractor: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(2)]),
+    distractortwo: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(2)]),
+    distractorthree: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(2)]),
+    numPart: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(1)])
   });
 
-  constructor(private router: Router){ }
+  constructor(private router: Router, private fb: FormBuilder) {
+    // this.dynamicForm = this.fb.group({
+    //   bulkRuns: this.fb.array([])
+    // });
+  }
+
+
+
+  // public get bulkRuns(): FormArray {
+  //   return this.dynamicForm.get('bulkRuns') as FormArray;
+  // }
+
+
+  // public addParticipants() {
+  //   this.bulkRuns.push(this.fb.group({
+  //     code: []
+  //   }));
+  //   console.log(this.dynamicForm);
+  // }
+
+  // public removeBulkRun(index: number) {
+  //   this.bulkRuns.removeAt(index);
+  // }
 
   ngpInit() {
 
@@ -30,21 +53,9 @@ export class ControlPanelComponent {
 
   onSubmit() {
     console.log(this.controlForm);
-    this.router.navigate(['instructions']);
-    
-
-    if(this.controlForm.value.distractor == this.controlForm.value.distractortwo || this.controlForm.value.distractorThree == this.controlForm.value.distractortwo || this.controlForm.value.distractor == this.controlForm.value.distractorthree){
-      console.log("Distractors cannot be the same");
-      this.validForm = false;
-      return this.controlForm.invalid;
-    }
-
+    // console.log(this.dynamicForm);
     if(this.controlForm.valid){
-      const numberOfTrials = this.controlForm.value.trials;
-      const distractorOne = this.controlForm.value.distractor;
-      const distractorTwo = this.controlForm.value.distractortwo;
-      const distractorThree = this.controlForm.value.distractorthree;
-      this.router.navigate(['instructions']);
+        this.router.navigate(['instructions']);
     }
   }
 
