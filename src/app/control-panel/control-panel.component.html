@@ -20,39 +20,5 @@
             <br>
         </div>
     </form>
-
-    <!-- <label>Add Participants</label>
-    <button style="margin-left: 1.5em" (click)="addParticipants()" [disabled]="isDisabled()"><mat-icon>+</mat-icon></button>
-    <form [formGroup]="dynamicForm">
-        <div  class="col-xs-12">
-            <div formArrayName="bulkRuns">
-                <div *ngFor="let bulkRun of bulkRuns.controls; let i = index" [formGroupName]="i">
-                    <input formControlName="code" placeholder="Participant ID"><button style="margin-left: 1.5em" (click)="removeBulkRun()"><mat-icon>-</mat-icon></button>
-                </div>
-            </div>
-        </div>
-    </form><br><br> -->
-    <button (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
+    <button (click)="onSubmit()">Submit</button>
 </div>
-
-<!-- <div class="container title">
-    <h1 class="title">Control Panel</h1>
-    Total Number of Trials: 
-    <input required [(ngModel)]="sTrialsAmount" (ngModelChange)="checkQuantityEmpty(sTrialsAmount, 1)"><br>
-    
-    Distractor Task Quantity 1:
-    <input required [(ngModel)]="sDtq1" (ngModelChange)="checkQuantityEmpty(sDtq1, 2)"><br>
-    
-    Distractor Task Quantity 2:
-    <input required [(ngModel)]="sDtq2" (ngModelChange)="checkQuantityEmpty(sDtq2, 3)"><br>
-    
-    Distractor Task Quantity 3:
-    <input required [(ngModel)]="sDtq3" (ngModelChange)="checkQuantityEmpty(sDtq3, 4)"><br><br>
-
-    <button mat-fab extended class="submit" (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
-</div>
-
-
-
-<div *ngIf="errorMessage" class="error-message"> -->
-
