@@ -44,24 +44,6 @@ export class ControlPanelComponent implements OnInit {
     this.showPartI = false;
   }
 
-
-
-  // public get bulkRuns(): FormArray {
-  //   return this.dynamicForm.get('bulkRuns') as FormArray;
-  // }
-
-
-  // public addParticipants() {
-  //   this.bulkRuns.push(this.fb.group({
-  //     code: []
-  //   }));
-  //   console.log(this.dynamicForm);
-  // }
-
-  // public removeBulkRun(index: number) {
-  //   this.bulkRuns.removeAt(index);
-  // }
-
   onSubmit() {
     console.log(this.controlForm);
     // console.log(this.dynamicForm);
@@ -135,9 +117,6 @@ export class ControlPanelComponent implements OnInit {
     }
   }
 
-<<<<<<< Updated upstream
-
-=======
   isDisabled():boolean {
     if(this.controlForm.valid) {
       if((this.controlForm.value.numPart >= 1) && (this.controlForm.value.distractor !== this.controlForm.value.distractortwo) && (this.controlForm.value.distractor !== this.controlForm.value.distractorthree) && (this.controlForm.value.distractortwo !== this.controlForm.value.distractorthree)) {
@@ -146,5 +125,4 @@ export class ControlPanelComponent implements OnInit {
     }
     return true;
   }
->>>>>>> Stashed changes
 }

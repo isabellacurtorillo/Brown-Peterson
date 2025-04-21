@@ -14,6 +14,7 @@ import { ControlPanelComponent } from './control-panel/control-panel.component';
 import { ProctorInstructionsComponent } from './proctor-instructions/proctor-instructions.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { provideHttpClient } from '@angular/common/http';
+import { DataHandlerComponent } from './task/data-handler/data-handler.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { provideHttpClient } from '@angular/common/http';
     TaskComponent,
     ControlPanelComponent,
     ProctorInstructionsComponent,
+    DataHandlerComponent,
   ],
   imports: [
     BrowserModule,
