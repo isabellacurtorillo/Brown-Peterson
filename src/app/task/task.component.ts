@@ -10,25 +10,23 @@ import { ControlPanelComponent } from '../control-panel/control-panel.component'
 export class TaskComponent implements OnInit {
 
     constructor(private router: Router, private controlPanel: ControlPanelComponent) {
-      this.trigram = this.generateRandomTrigram();
-      this.trials = this.controlPanel.controlForm.get('trials')?.value;
     }
 
   public trigramLetters: string[] = ["B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Z"];
   public disableLetters: boolean[];
-  public trigram: string = "";
+  @Input() public trigram: string = "";
   public num1: number;
   public num2: number;
-  public formInput: number;
+  @Input() public formInput: number;
   public showTrigram: boolean;
   public showDist: boolean;
   public showKeys: boolean;
   @Output() public respCount: number;
+  public userResponse: string;
+  public userResponses: string[] = new Array(this.controlPanel.controlForm.value.trials).fill("");
   public trials: number;
 
   ngOnInit() {
-    
-    this.trigram = this.generateRandomTrigram();
     this.showTrigram = false;
     this.showDist = false;
     this.showKeys = false;
@@ -70,7 +68,9 @@ export class TaskComponent implements OnInit {
   }
 
   public recordResp(ans: string, pos: number) { //save the response in an array
-    console.log(ans);
+    var userResp = ans;
+    this.userResponses.splice(0, 0, userResp);
+    console.log(this.userResponses[0]);
     this.disableLetters[pos] = true;
     this.respCount = 0;
     for(const element of this.disableLetters) {

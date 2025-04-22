@@ -23,6 +23,8 @@ export class ControlPanelComponent implements OnInit {
   public distThreeCount: number;
   public randDistNum: number;
   public randDistOrder: number[] = [];
+  public randTrigram: string;
+  public randTriOrder: string[] = [];
 
   public controlForm: FormGroup = new FormGroup({
     trials: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(3)]),
@@ -32,10 +34,7 @@ export class ControlPanelComponent implements OnInit {
     numPart: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/), Validators.min(1)])
   });
 
-  constructor(private router: Router, private fb: FormBuilder) {
-    // this.dynamicForm = this.fb.group({
-    //   bulkRuns: this.fb.array([])
-    // });
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
@@ -52,11 +51,24 @@ export class ControlPanelComponent implements OnInit {
         // this.showPartI = true;
         this.setCounters();
         this.randDistOrder = this.getRandDistOrder();
-        console.log(this.randDistOrder.toString());
+        this.randTriOrder = this.getRandTri();
+        console.log(this.randTriOrder);
         this.randDistNum = this.randDistOrder[0];
+        this.randTrigram = this.randTriOrder[0];
         this.showTask = true;
 
     }
+  }
+
+  getRandTri(): string[] {
+    var order: string[] = new Array(this.controlForm.value.trials).fill(null);
+    for(let i = 0; i < this.controlForm.value.trials; i++) {
+      var controlpanel = new ControlPanelComponent(this.router);
+      this.task = new TaskComponent(this.router, controlpanel);
+      var randTri = this.task.generateRandomTrigram();
+      order[i] = randTri;
+    }
+    return order;
   }
 
   getRandDistOrder(): number[] {
