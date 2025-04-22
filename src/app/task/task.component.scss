@@ -3,11 +3,11 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 5%;
+    margin-top: 20%;
     margin-bottom: 5%;
-    font-size: 2rem;
+    font-size: 5rem;
     font-weight: bold;
-    color: rgb(89, 60, 97);
+    color: #00006e;
     background: white;
     border-radius: 5px;
     padding: 5px;
@@ -20,8 +20,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    .distractor{
+      color:#00006e;
+      font-size: 3rem;
+      font-weight: bold;
+      width: 10rem;
+      height: 7rem;
+      justify-content: center;
+      background-color:#e0e0ff;
   }
-  
+}
   @keyframes inAndOut {
     0% {
       opacity: 0;

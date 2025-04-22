@@ -20,7 +20,7 @@
             <br>
         </div>
     </form>
-    <button (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
+    <button mat-fab extended class="next" (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
 </div>
 
 <app-instructions *ngIf="showPartI"></app-instructions>

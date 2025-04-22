@@ -1,8 +1,8 @@
 
 <h2 *ngIf="showTrigram" class="trigram-display">{{trigram}}</h2>
 <div class="num-button">
-    <button *ngIf="showDist" (click)="swapQuantities(num1)">{{ num1 }}</button>
-    <button *ngIf="showDist" (click)="swapQuantities(num2)">{{ num2 }}</button>
+    <button mat-flat-button class="distractor" *ngIf="showDist" (click)="swapQuantities(num1)">{{ num1 }}</button>
+    <button mat-flat-button class="distractor" *ngIf="showDist" (click)="swapQuantities(num2)">{{ num2 }}</button>
 </div>
 <div class="keyboard">
     <div class="num-button">
