@@ -23,5 +23,4 @@
     <button mat-fab extended class="next" (click)="onSubmit()" [disabled]="isDisabled()">Submit</button>
 </div>
 
-<app-instructions *ngIf="showPartI"></app-instructions>
-<app-task *ngIf="showTask" [formInput]="randDistNum" [trigram]="randTrigram"></app-task>
+<app-task *ngIf="showTask" [randDistOrder]="randDistOrder" [randTriOrder]="randTriOrder" [numPart]="numPart"></app-task>

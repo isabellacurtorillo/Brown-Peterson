@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { MatIconModule } from '@angular/material/icon';
-import { InstructionsComponent } from './participant-instructions/participant-instructions.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './nav/nav.component';
 import { TaskComponent } from './task/task.component';
@@ -20,7 +19,6 @@ import { DataHandlerComponent } from './task/data-handler/data-handler.component
   declarations: [
     AppComponent,
     HomeScreenComponent,
-    InstructionsComponent,
     NavComponent,
     TaskComponent,
     ControlPanelComponent,

@@ -1,49 +1,59 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ControlPanelComponent } from '../control-panel/control-panel.component';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss'
 })
-export class TaskComponent implements OnInit {
-
-    constructor(private router: Router, private controlPanel: ControlPanelComponent) {
-    }
+export class TaskComponent {
 
   public trigramLetters: string[] = ["B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Z"];
-  public disableLetters: boolean[];
-  @Input() public trigram: string = "";
+  public trigram: string = "";
   public num1: number;
   public num2: number;
-  @Input() public formInput: number;
+  public formInput: number;
   public showTrigram: boolean;
   public showDist: boolean;
   public showKeys: boolean;
+  public showInstr: boolean;
+  public showExport: boolean;
   @Output() public respCount: number;
   public userResponse: string;
   public userResponses: string[] = new Array(this.controlPanel.controlForm.value.trials).fill("");
-  public trials: number;
+  @Input() public randDistOrder: number[] = [];
+  @Input() public randTriOrder: string[] = [];
+  @Input() public numPart: number;
+  public counter: number;
 
-  ngOnInit() {
-    this.showTrigram = false;
-    this.showDist = false;
-    this.showKeys = false;
-    this.disableLetters = [false, false, false, false ,false, false, false, false, false ,false, false, false, false, false ,false, false, false, false, false ,false]
-    this.num1 = this.generateRandomEvenNumber();
-    this.num2 = this.generateRandomOddNumber();
-    setTimeout(() => {
-      this.showTrigram = true;
-    }, 4000);
-    setTimeout(() => {
+  public pInstrForm: FormGroup = new FormGroup({
+    participantCode: new FormControl(undefined, [Validators.required, Validators.pattern(/^[0-9]\d*$/)])
+  });
+
+    constructor(private router: Router, private controlPanel: ControlPanelComponent) {
       this.showTrigram = false;
-    }, 2000);
-    setTimeout(() => {
-      this.showDist = true;
-    }, 7000);
-    console.log(this.formInput);
-}
+      this.showDist = false;
+      this.showKeys = false;
+      this.showInstr = false;
+      this.showExport = false;
+      this.num1 = this.generateRandomEvenNumber();
+      this.num2 = this.generateRandomOddNumber();
+      this.start();
+    }
+
+  public start() {
+    this.pInstrForm.reset();
+    this.numPart--
+    this.showInstr = true;
+  }
+
+  public exportData() {
+    console.log(this.numPart);
+    this.showExport = false;
+    this.start();
+  }
 
   public swapQuantities(n: number) {
     if( n % 2 == 0 && this.formInput-1 != 0) {
@@ -67,19 +77,17 @@ export class TaskComponent implements OnInit {
     }
   }
 
-  public recordResp(ans: string, pos: number) { //save the response in an array
-    var userResp = ans;
-    this.userResponses.splice(0, 0, userResp);
-    console.log(this.userResponses[0]);
-    this.disableLetters[pos] = true;
-    this.respCount = 0;
-    for(const element of this.disableLetters) {
-      if (element) {
-        this.respCount++;
-      }
-    }
+  public recordResp(ans: string) { //save the response in an array
+    console.log(ans);
+    this.respCount++;
     if(this.respCount == 3) {
-      this.router.navigate(['instructions']);
+      this.showKeys = false;
+      if(this.counter < (this.randDistOrder.length-1)) {
+        this.counter++;
+        this.doTrial(this.counter);
+      }else {
+        this.showExport = true;
+      }
     }
   }
 
@@ -117,5 +125,33 @@ export class TaskComponent implements OnInit {
       }
 
   }
+
+  public isDisabled():boolean {
+    if(this.pInstrForm.valid && this.pInstrForm.value.participantCode.length == 4) {
+        return false;
+    }
+    return true
+  }
   
+  public onSubmit() {
+    this.showInstr = false;
+    this.showExport = false;
+    this.counter = 0;
+    this.doTrial(this.counter);
+  }
+  
+  public doTrial(i: number) {
+      this.respCount = 0;
+      this.trigram = this.randTriOrder[i];
+      this.formInput = this.randDistOrder[i];
+      setTimeout(() => {
+        this.showTrigram = true;
+      }, 4000);
+      setTimeout(() => {
+        this.showTrigram = false;
+      }, 2000);
+      setTimeout(() => {
+        this.showDist = true;
+      }, 7000);
+  }
 }

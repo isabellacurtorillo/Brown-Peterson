@@ -17,13 +17,11 @@ export class ControlPanelComponent implements OnInit {
   public task: TaskComponent;
   public showTask: boolean;
   public showInstructions: boolean;
-  public showPartI: boolean;
   public distOneCount: number;
   public distTwoCount: number;
   public distThreeCount: number;
-  public randDistNum: number;
+  public numPart: number;
   public randDistOrder: number[] = [];
-  public randTrigram: string;
   public randTriOrder: string[] = [];
 
   public controlForm: FormGroup = new FormGroup({
@@ -40,7 +38,6 @@ export class ControlPanelComponent implements OnInit {
   ngOnInit(): void {
     this.showTask = false;
     this.showInstructions = true;
-    this.showPartI = false;
   }
 
   onSubmit() {
@@ -48,13 +45,12 @@ export class ControlPanelComponent implements OnInit {
     // console.log(this.dynamicForm);
     if(this.controlForm.valid){
         this.showInstructions = false;
-        // this.showPartI = true;
         this.setCounters();
         this.randDistOrder = this.getRandDistOrder();
         this.randTriOrder = this.getRandTri();
+        this.numPart = this.controlForm.value.numPart;
         console.log(this.randTriOrder);
-        this.randDistNum = this.randDistOrder[0];
-        this.randTrigram = this.randTriOrder[0];
+        console.log(this.randDistOrder);
         this.showTask = true;
 
     }
